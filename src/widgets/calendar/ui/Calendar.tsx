@@ -5,7 +5,6 @@ import { useState } from 'react';
 import { CalendarForm } from './CalendarForm';
 import CalendarHeader from './CalendarHeader';
 
-
 export default function Calendar() {
   const today = new Date();
 
@@ -14,20 +13,20 @@ export default function Calendar() {
 
   const weeks = getMonthMatrix(year, month);
   return (
-    <div className='w-full h-full mx-auto bg-white rounded-xl shadow p-4 flex flex-col gap-4'>
+    <div className='w-full h-full mx-auto bg-calendar-bg rounded-xl shadow p-4 flex flex-col gap-4'>
       <CalendarHeader year={year} month={month} setYear={setYear} setMonth={setMonth} />
-      <div className='w-full grid grid-cols-7 text-center font-bold text-sky-600'>
+      <div className='bg-calendar-days-bg w-full grid grid-cols-7 border border-calendar-month-border text-center font-bold'>
         {DAYS_KO.map((d) => (
           <div key={d}>{d}</div>
         ))}
       </div>
-      <div className='flex-1 flex flex-col gap-1 justify-between'>
+      <div className='flex-1 flex flex-col justify-between border border-cal-month-border'>
         {weeks.map((week, i) => (
           <div key={i} className='w-full h-full grid grid-cols-7 text-center'>
             {week.map((date, j) => (
               <div
                 key={j}
-                className='flex-1 flex items-center justify-center rounded hover:bg-sky-100 transition text-sky-900 text-sm border border-sky-100'
+                className='flex-1 flex items-center justify-center rounded border cal-month-border hover:bg-sky-100 transition text-sky-900 text-sm bg-white'
               >
                 <CalendarForm date={`${year}-${month + 1}-${date}`} />
               </div>
