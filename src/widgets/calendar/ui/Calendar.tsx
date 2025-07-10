@@ -13,9 +13,9 @@ export default function Calendar() {
 
   const weeks = getMonthMatrix(year, month);
   return (
-    <div className='w-full h-full mx-auto bg-calendar-bg rounded-xl shadow p-4 flex flex-col gap-4'>
+    <div className='w-full h-full mx-auto bg-calendar-bg rounded-xl shadow p-4 flex flex-col'>
       <CalendarHeader year={year} month={month} setYear={setYear} setMonth={setMonth} />
-      <div className='bg-calendar-days-bg w-full grid grid-cols-7 border border-calendar-month-border text-center font-bold'>
+      <div className='bg-calendar-days-bg w-full grid grid-cols-7 border border-cal-month-border text-center font-bold'>
         {DAYS_KO.map((d) => (
           <div key={d}>{d}</div>
         ))}

@@ -2,6 +2,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { DAY_MONTH_WEEK } from '../model';
 import { format } from 'date-fns';
 import { ko } from 'date-fns/locale';
+import { Button } from '@/shared/ui/shadcn/components/button';
 
 interface CalendarHeaderProps {
   year: number;
@@ -29,22 +30,41 @@ export default function CalendarHeader({ year, month, setYear, setMonth }: Calen
     }
   };
 
-  const monthFormat = format(new Date(year, month), 'MMMM', { locale: ko }).padStart(3, '0');
-
+  const monthFormat = format(new Date(year, month), 'yyyy-MM', { locale: ko });
+  // TODO 아이콘 svg 파일 사용할 수 있게 svgr 플러그인 추가 후 변경할 것
   return (
-    <div className='flex items-end justify-between'>
-      <div className='flex gap-2 items-end'>
-        <h1 className='text-6xl font-bold text-center'>{monthFormat}</h1>
-        <div className='flex'>
-          <ChevronLeft size={48} onClick={handlePrevMonth} className='cursor-pointer' />
-          <ChevronRight size={48} onClick={handleNextMonth} className='cursor-pointer' />
+    <div className='h-[82px] my-5 flex items-center justify-between'>
+      <div className='h-full flex-1 flex gap-4 items-end'>
+        <h1 className='text-[#1A256E] text-title1 '>{monthFormat}</h1>
+        <div className='flex gap-2 items-center pb-1'>
+          <div className='embossed w-8 h-8 bg-cal-btn-bg rounded-full flex items-center justify-center cursor-pointer'>
+            <ChevronLeft size={18} onClick={handlePrevMonth} />
+          </div>
+          <button
+            onClick={() => {
+              setYear(new Date().getFullYear());
+              setMonth(new Date().getMonth());
+            }}
+            className='embossed bg-cal-btn-bg hover:bg-cal-btn-bg cursor-pointer px-[20.5px] py-1 rounded-[10px] flex items-center justify-center'
+          >
+            <span
+              className='text-body2 text-white
+            '
+            >
+              Today
+            </span>
+          </button>
+          <div className='embossed w-8 h-8 bg-cal-btn-bg rounded-full flex items-center justify-center cursor-pointer '>
+            <ChevronRight size={18} onClick={handleNextMonth} />
+          </div>
         </div>
       </div>
-      <div className='flex gap-3 text-3xl font-bold'>
+      <div className='flex gap-3  text-3xl font-bold'>
         {DAY_MONTH_WEEK.map((d) => (
           <span key={d}>{d}</span>
         ))}
       </div>
+      <div className='flex-1'></div>
     </div>
   );
 }
