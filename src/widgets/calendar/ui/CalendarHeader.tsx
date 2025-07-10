@@ -1,5 +1,5 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { DAY_WEEK_MONTH } from '../model';
+import { MONTH_DAY_WEEK } from '../model';
 import { format } from 'date-fns';
 import { ko } from 'date-fns/locale';
 import { Button } from '@/shared/ui/shadcn/components/button';
