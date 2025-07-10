@@ -1,8 +1,9 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { DAY_MONTH_WEEK } from '../model';
+import { DAY_WEEK_MONTH } from '../model';
 import { format } from 'date-fns';
 import { ko } from 'date-fns/locale';
 import { Button } from '@/shared/ui/shadcn/components/button';
+import CalendarViewSelector from './CalendarViewSelector';
 
 interface CalendarHeaderProps {
   year: number;
@@ -33,7 +34,7 @@ export default function CalendarHeader({ year, month, setYear, setMonth }: Calen
   const monthFormat = format(new Date(year, month), 'yyyy-MM', { locale: ko });
   // TODO 아이콘 svg 파일 사용할 수 있게 svgr 플러그인 추가 후 변경할 것
   return (
-    <div className='h-[82px] my-5 flex items-center justify-between'>
+    <div className='h-[82px] my-5 flex items-center justify-between bg-cal-bg'>
       <div className='h-full flex-1 flex gap-4 items-end'>
         <h1 className='text-[#1A256E] text-title1 '>{monthFormat}</h1>
         <div className='flex gap-2 items-center pb-1'>
@@ -59,11 +60,7 @@ export default function CalendarHeader({ year, month, setYear, setMonth }: Calen
           </div>
         </div>
       </div>
-      <div className='flex gap-3  text-3xl font-bold'>
-        {DAY_MONTH_WEEK.map((d) => (
-          <span key={d}>{d}</span>
-        ))}
-      </div>
+      <CalendarViewSelector />
       <div className='flex-1'></div>
     </div>
   );
