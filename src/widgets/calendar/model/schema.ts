@@ -53,3 +53,5 @@ export const calendarFormSchema = z
   );
 
 export type FormData = z.infer<typeof calendarFormSchema>;
+
+export type SelectorView = 'Day' | 'Week' | 'Month';
