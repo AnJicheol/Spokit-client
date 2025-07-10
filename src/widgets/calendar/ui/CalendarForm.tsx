@@ -25,12 +25,9 @@ export function CalendarForm({ date }: { date: string }) {
     handleMemberSelect,
     onSubmit,
     mockMembers,
-    selectedMembers,
   } = useCalendarForm(date);
-  console.log(selectedMembers);
-  console.log('selectedMembers[0].id', selectedMembers[0]?.id);
   return (
-    <Modal trigger={<div className='h-full w-full'>{date ?? ''}</div>} title='일정 추가'>
+    <Modal trigger={<div className='w-full h-full' />} title='일정 추가'>
       <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4 my-4'>
         {/* 멤버 선택 */}
 

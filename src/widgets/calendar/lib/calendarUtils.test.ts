@@ -7,8 +7,7 @@ describe('getMonthMatrix 함수 테스트', () => {
   it('2025년 7월: 1일이 화요일에 위치해야 한다', () => {
     const matrix = getMonthMatrix(2025, 6);
     // 화요일은 matrix[0][2]에 있고, 1일은 2025-7-1 형식으로 표시
-    expect(matrix[0][1].endsWith('-1')).toBe(true);
-    expect(matrix[0][1]).toBe('2025-7-1');
+    expect(matrix[0][2]).toBe('2025-7-1');
   });
 
   it('2025년 7월: 31일까지 표시되어야 한다', () => {
