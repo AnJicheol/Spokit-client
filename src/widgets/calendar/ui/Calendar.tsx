@@ -3,14 +3,13 @@ import { useState, useMemo } from 'react';
 import CalendarHeader from './CalendarHeader';
 import { cn } from '@/shared/lib/utils';
 import { getCalendarMatrix } from '../lib/calendarUtils';
-import CalendarWeek from './CalendarWeek';
+import CalendarMonthView from './CalendarMonthView';
 
 export default function Calendar() {
   // 현재 날짜 정보
-  const today = new Date();
 
   // 상태 관리
-  const [baseDate, setBaseDate] = useState(today);
+  const [baseDate, setBaseDate] = useState(new Date());
   const [mode, setMode] = useState<viewMode>('Month');
 
   // 달력 데이터 메모이제이션 - baseDate와 mode가 변경될 때만 다시 계산
@@ -34,12 +33,12 @@ export default function Calendar() {
       </div>
       <div className='flex-1 flex flex-col justify-between'>
         {weeks.map((week, i) => (
-          <CalendarWeek
+          <CalendarMonthView
             key={i}
             week={week}
             isLastWeek={i === weeks.length - 1}
             currentMonth={baseDate.getMonth()}
-            today={today}
+            today={baseDate}
           />
         ))}
       </div>

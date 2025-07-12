@@ -13,7 +13,7 @@ export function getMonthMatrix(baseDate: Date): string[][] {
   const dates: string[] = [];
   for (let i = 0; i < 35; i++) {
     const date = addDays(calendarStart, i);
-    dates.push(format(date, 'yyyy-M-d'));
+    dates.push(format(date, 'yyyy-MM-dd'));
   }
 
   return Array.from({ length: 5 }, (_, week) => dates.slice(week * 7, (week + 1) * 7));
@@ -30,7 +30,7 @@ export function getWeekMatrix(baseDate: Date): string[][] {
 
   for (let i = 0; i < 7; i++) {
     const date = addDays(weekStart, i);
-    weekDays.push(format(date, 'yyyy-M-d'));
+    weekDays.push(format(date, 'yyyy-MM-dd'));
   }
 
   return [weekDays];
@@ -42,7 +42,7 @@ export function getWeekMatrix(baseDate: Date): string[][] {
  * @returns 1일의 날짜 문자열 2차원 배열 [[1개 날짜]]
  */
 export function getDayMatrix(baseDate: Date): string[][] {
-  const dayString = format(baseDate, 'yyyy-M-d');
+  const dayString = format(baseDate, 'yyyy-MM-dd');
   const date = getDay(baseDate);
   console.log(date);
   return [[dayString]];
