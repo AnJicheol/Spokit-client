@@ -44,7 +44,6 @@ export function getWeekMatrix(baseDate: Date): string[][] {
 export function getDayMatrix(baseDate: Date): string[][] {
   const dayString = format(baseDate, 'yyyy-MM-dd');
   const date = getDay(baseDate);
-  console.log(date);
   return [[dayString]];
 }
 
