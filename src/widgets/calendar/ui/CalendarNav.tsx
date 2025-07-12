@@ -1,6 +1,7 @@
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { addMonths, subMonths, addWeeks, subWeeks, addDays, subDays } from 'date-fns';
 import { type viewMode } from '../model';
+import LeftIcon from '@/assets/left.svg?react';
+import RightIcon from '@/assets/right.svg?react';
 
 interface CalendarNavProps {
   baseDate: Date;
@@ -46,7 +47,7 @@ export default function CalendarNav({ baseDate, setBaseDate, mode }: CalendarNav
         onClick={handlePrev}
         className='embossed w-8 h-8 bg-cal-btn-bg rounded-full flex items-center justify-center cursor-pointer'
       >
-        <ChevronLeft size={18} />
+        <LeftIcon className='w-[18px] h-[18px]' />
       </div>
       <button
         onClick={handleTodayClick}
@@ -63,7 +64,7 @@ export default function CalendarNav({ baseDate, setBaseDate, mode }: CalendarNav
         onClick={handleNext}
         className='embossed w-8 h-8 bg-cal-btn-bg rounded-full flex items-center justify-center cursor-pointer '
       >
-        <ChevronRight size={18} />
+        <RightIcon className='w-[18px] h-[18px]' />
       </div>
     </div>
   );
