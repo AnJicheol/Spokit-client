@@ -1,9 +1,12 @@
-import { useState } from 'react';
-import { MONTH_DAY_WEEK, type SelectorView } from '../model';
+import { MONTH_DAY_WEEK, type viewMode } from '../model';
 import { motion } from 'motion/react';
 
-export default function CalendarViewSelector() {
-  const [activeView, setActiveView] = useState<SelectorView>('Month');
+interface CalendarViewSelectorProps {
+  mode: viewMode;
+  setMode: (mode: viewMode) => void;
+}
+
+export default function CalendarViewSelector({ mode, setMode }: CalendarViewSelectorProps) {
   // 버튼 넓이와 위치를 위한 상수 값들
   const BUTTON_WIDTH = 84;
   const viewIndexMap = {
@@ -12,12 +15,12 @@ export default function CalendarViewSelector() {
     Day: 2,
   };
   const position = {
-    x: viewIndexMap[activeView] * BUTTON_WIDTH,
+    x: viewIndexMap[mode] * BUTTON_WIDTH,
     width: BUTTON_WIDTH,
   };
   // 버튼 클릭 핸들러
-  const handleViewChange = (view: SelectorView) => {
-    setActiveView(view);
+  const handleViewChange = (view: viewMode) => {
+    setMode(view);
   };
 
   return (
@@ -43,11 +46,11 @@ export default function CalendarViewSelector() {
           key={view}
           className={`rounded-full px-5 py-2 text-body2 flex items-center justify-center cursor-pointer z-10 relative`}
           style={{ width: BUTTON_WIDTH }}
-          onClick={() => handleViewChange(view as SelectorView)}
+          onClick={() => handleViewChange(view as viewMode)}
         >
           <span
             className={`
-              ${activeView === view ? 'text-white' : 'text-black'}
+              ${mode === view ? 'text-white' : 'text-black'}
               transition-colors duration-300 ease-in-out`}
           >
             {view}

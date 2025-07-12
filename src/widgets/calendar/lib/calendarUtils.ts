@@ -1,48 +1,68 @@
-import { getDaysInMonth, startOfMonth, getDay, addMonths, subMonths } from 'date-fns';
+import { startOfMonth, startOfWeek, addDays, format, getDay } from 'date-fns';
+import { type viewMode } from '../model';
 
 /**
- * 월요일 시작, 5주(35칸)짜리 달력 2차원 배열 반환
- * 이전 달, 현재 달, 다음 달 날짜를 모두 포함 (년도 포함)
- * @param year 년도 (예: 2025)
- * @param month 월 (0~11)
+ * 일요일 시작, 5주(35칸)짜리 달력 2차원 배열 반환
+ * @param baseDate 기준 날짜
+ * @returns 5주간의 날짜 문자열 2차원 배열
  */
-export function getMonthMatrix(year: number, month: number): string[][] {
-  const currentDate = new Date(year, month);
-  const daysInMonth = getDaysInMonth(currentDate);
-  const firstDay = getDay(startOfMonth(currentDate));
+export function getMonthMatrix(baseDate: Date): string[][] {
+  const monthStart = startOfMonth(baseDate);
+  const calendarStart = startOfWeek(monthStart, { weekStartsOn: 0 }); // 일요일 시작
 
-  // 이전 달 정보
-  const prevMonth = subMonths(currentDate, 1);
-  const prevMonthYear = prevMonth.getFullYear();
-  const prevMonthNumber = prevMonth.getMonth() + 1;
-  const daysInPrevMonth = getDaysInMonth(prevMonth);
-
-  // 다음 달 정보
-  const nextMonth = addMonths(currentDate, 1);
-  const nextMonthYear = nextMonth.getFullYear();
-  const nextMonthNumber = nextMonth.getMonth() + 1;
-
-  // 시작 인덱스 (일요일 시작 기준)
-  const startIdx = firstDay;
-
-  const cells: string[] = Array(35).fill('');
-
-  // 이전 달 채우기
-  for (let i = 0; i < startIdx; i++) {
-    const day = daysInPrevMonth - startIdx + i + 1;
-    cells[i] = `${prevMonthYear}-${prevMonthNumber}-${day}`;
+  const dates: string[] = [];
+  for (let i = 0; i < 35; i++) {
+    const date = addDays(calendarStart, i);
+    dates.push(format(date, 'yyyy-M-d'));
   }
 
-  // 현재 달 채우기
-  for (let i = 0; i < daysInMonth; i++) {
-    cells[startIdx + i] = `${year}-${month + 1}-${i + 1}`;
+  return Array.from({ length: 5 }, (_, week) => dates.slice(week * 7, (week + 1) * 7));
+}
+
+/**
+ * 주간 뷰용 7일 배열 반환 (1주)
+ * @param baseDate 기준 날짜
+ * @returns 7일간의 날짜 문자열 2차원 배열 [[7개 날짜]]
+ */
+export function getWeekMatrix(baseDate: Date): string[][] {
+  const weekStart = startOfWeek(baseDate, { weekStartsOn: 0 }); // 일요일 시작
+  const weekDays: string[] = [];
+
+  for (let i = 0; i < 7; i++) {
+    const date = addDays(weekStart, i);
+    weekDays.push(format(date, 'yyyy-M-d'));
   }
 
-  // 다음 달 채우기
-  const remainingCells = 35 - (startIdx + daysInMonth);
-  for (let i = 0; i < remainingCells; i++) {
-    cells[startIdx + daysInMonth + i] = `${nextMonthYear}-${nextMonthNumber}-${i + 1}`;
-  }
+  return [weekDays];
+}
 
-  return Array.from({ length: 5 }, (_, week) => cells.slice(week * 7, week * 7 + 7));
+/**
+ * 일간 뷰용 1일 배열 반환
+ * @param baseDate 기준 날짜
+ * @returns 1일의 날짜 문자열 2차원 배열 [[1개 날짜]]
+ */
+export function getDayMatrix(baseDate: Date): string[][] {
+  const dayString = format(baseDate, 'yyyy-M-d');
+  const date = getDay(baseDate);
+  console.log(date);
+  return [[dayString]];
+}
+
+/**
+ * 모드별 캘린더 매트릭스 반환
+ * @param baseDate 기준 날짜
+ * @param mode 뷰 모드 ('Day' | 'Week' | 'Month')
+ * @returns 날짜 문자열 2차원 배열
+ */
+export function getCalendarMatrix(baseDate: Date, mode: viewMode): string[][] {
+  switch (mode) {
+    case 'Month':
+      return getMonthMatrix(baseDate);
+    case 'Week':
+      return getWeekMatrix(baseDate);
+    case 'Day':
+      return getDayMatrix(baseDate);
+    default:
+      return getMonthMatrix(baseDate);
+  }
 }

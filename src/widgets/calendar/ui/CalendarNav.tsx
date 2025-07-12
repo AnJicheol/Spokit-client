@@ -1,39 +1,49 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { addMonths, subMonths, addWeeks, subWeeks, addDays, subDays } from 'date-fns';
+import { type viewMode } from '../model';
 
 interface CalendarNavProps {
-  year: number;
-  month: number;
-  setYear: (year: number) => void;
-  setMonth: (month: number) => void;
+  baseDate: Date;
+  setBaseDate: (date: Date) => void;
+  mode: viewMode;
 }
 
-export default function CalendarNav({ year, month, setYear, setMonth }: CalendarNavProps) {
-  const handlePrevMonth = () => {
-    if (month === 0) {
-      setYear(year - 1);
-      setMonth(11);
-    } else {
-      setMonth(month - 1);
+export default function CalendarNav({ baseDate, setBaseDate, mode }: CalendarNavProps) {
+  const handlePrev = () => {
+    switch (mode) {
+      case 'Month':
+        setBaseDate(subMonths(baseDate, 1));
+        break;
+      case 'Week':
+        setBaseDate(subWeeks(baseDate, 1));
+        break;
+      case 'Day':
+        setBaseDate(subDays(baseDate, 1));
+        break;
     }
   };
 
-  const handleNextMonth = () => {
-    if (month === 11) {
-      setYear(year + 1);
-      setMonth(0);
-    } else {
-      setMonth(month + 1);
+  const handleNext = () => {
+    switch (mode) {
+      case 'Month':
+        setBaseDate(addMonths(baseDate, 1));
+        break;
+      case 'Week':
+        setBaseDate(addWeeks(baseDate, 1));
+        break;
+      case 'Day':
+        setBaseDate(addDays(baseDate, 1));
+        break;
     }
   };
 
   const handleTodayClick = () => {
-    setYear(new Date().getFullYear());
-    setMonth(new Date().getMonth());
+    setBaseDate(new Date());
   };
   return (
     <div className='flex gap-2 items-center pb-1'>
       <div
-        onClick={handlePrevMonth}
+        onClick={handlePrev}
         className='embossed w-8 h-8 bg-cal-btn-bg rounded-full flex items-center justify-center cursor-pointer'
       >
         <ChevronLeft size={18} />
@@ -50,7 +60,7 @@ export default function CalendarNav({ year, month, setYear, setMonth }: Calendar
         </span>
       </button>
       <div
-        onClick={handleNextMonth}
+        onClick={handleNext}
         className='embossed w-8 h-8 bg-cal-btn-bg rounded-full flex items-center justify-center cursor-pointer '
       >
         <ChevronRight size={18} />
