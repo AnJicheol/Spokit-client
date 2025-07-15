@@ -10,7 +10,8 @@ export default function CalendarTimeGrid({ week, currentMonth }: CalendarWeekVie
   return (
     <div
       className={cn(
-        'w-full h-full flex border border-cal-cell-border overflow-y-scroll scrollbar-hide',
+        'grid overflow-y-scroll scrollbar-hide',
+        week.length === 1 ? 'grid-cols-1' : 'grid-cols-7',
       )}
     >
       {week.map((date, index) => {

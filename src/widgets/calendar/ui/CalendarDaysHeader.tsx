@@ -50,7 +50,7 @@ export default function CalendarDaysHeader({ mode, week }: CalendarDaysHeaderPro
 
   const renderDayHeader = () => {
     const date = dates[0];
-    return <HeaderCell>{`${getDate(date)}(${DAYS_KO[getDay(date)]})`}</HeaderCell>;
+    return <HeaderCell isLast={true}>{`${getDate(date)}(${DAYS_KO[getDay(date)]})`}</HeaderCell>;
   };
 
   const renderHeader = () => {
@@ -69,7 +69,7 @@ export default function CalendarDaysHeader({ mode, week }: CalendarDaysHeaderPro
   return (
     <div
       className={cn(
-        'bg-cal-days-bg w-full grid border border-b-0 border-cal-cell-border',
+        'bg-cal-days-bg w-full grid rounded-t-xl',
         mode === 'Day' ? 'grid-cols-1' : 'grid-cols-7',
       )}
     >

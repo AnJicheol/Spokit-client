@@ -13,23 +13,18 @@ function CalendarTimeCell({ date, isLastInRow, isCurrentMonth }: CalendarDayProp
   });
 
   return (
-    <div
-      className={cn(
-        'flex-1 relative bg-cal-cell-bg border-r border-cal-cell-border',
-        isLastInRow && 'border-r-0',
-        !isCurrentMonth && 'bg-cal-cell-muted-bg',
-      )}
-    >
-      <div className='flex flex-col h-full'>
-        {timeSlots.map((timeSlot) => (
-          <div
-            key={`${date}-${timeSlot}`}
-            className='border-b border-cal-cell-border last:border-b-0 h-[40px] shrink-0'
-            data-time={timeSlot}
-            data-date={date}
-          />
-        ))}
-      </div>
+    <div className={cn(!isCurrentMonth && 'bg-cal-cell-muted-bg')}>
+      {timeSlots.map((timeSlot) => (
+        <div
+          key={`${date}-${timeSlot}`}
+          className={cn(
+            'bg-cal-cell-bg border-r border-b border-cal-cell-border h-[40px]',
+            isLastInRow && 'border-r-0',
+          )}
+          data-time={timeSlot}
+          data-date={date}
+        />
+      ))}
     </div>
   );
 }
