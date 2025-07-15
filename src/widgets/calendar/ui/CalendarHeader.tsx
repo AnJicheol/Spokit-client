@@ -18,7 +18,6 @@ export default function CalendarHeader({
   setMode,
 }: CalendarHeaderProps) {
   const dateFormat = format(baseDate, 'yyyy-MM', { locale: ko });
-  // TODO 아이콘 svg 파일 사용할 수 있게 svgr 플러그인 추가 후 변경할 것
   return (
     <div className='h-[82px] my-5 flex items-center justify-between'>
       <div className='h-full flex-1 flex gap-4 items-end'>
