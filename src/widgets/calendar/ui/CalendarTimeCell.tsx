@@ -24,7 +24,7 @@ function CalendarTimeCell({ date, isLastInRow, isCurrentMonth }: CalendarDayProp
         {timeSlots.map((timeSlot) => (
           <div
             key={`${date}-${timeSlot}`}
-            className='border-b border-cal-cell-border last:border-b-0 h-[40px]'
+            className='border-b border-cal-cell-border last:border-b-0 h-[40px] shrink-0'
             data-time={timeSlot}
             data-date={date}
           />

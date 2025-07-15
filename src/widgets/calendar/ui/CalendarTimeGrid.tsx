@@ -1,5 +1,4 @@
 import { cn } from '@/shared/lib/utils';
-import { format } from 'date-fns';
 import CalendarTimeCell from './CalendarTimeCell';
 
 interface CalendarWeekViewProps {
@@ -7,13 +6,11 @@ interface CalendarWeekViewProps {
   currentMonth: number;
 }
 
-export default function CalendarWeekView({ week, currentMonth }: CalendarWeekViewProps) {
-  const todayFormat = format(new Date(), 'yyyy-MM-dd');
-
+export default function CalendarTimeGrid({ week, currentMonth }: CalendarWeekViewProps) {
   return (
     <div
       className={cn(
-        'w-full h-full grid grid-cols-7 border border-cal-cell-border overflow-y-scroll scrollbar-hide',
+        'w-full h-full flex border border-cal-cell-border overflow-y-scroll scrollbar-hide',
       )}
     >
       {week.map((date, index) => {
