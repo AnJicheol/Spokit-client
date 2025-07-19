@@ -19,7 +19,7 @@ export default function CalendarHeader({
 }: CalendarHeaderProps) {
   const dateFormat = format(baseDate, 'yyyy-MM', { locale: ko });
   return (
-    <div className='pb-3 pt-[33px] flex items-center justify-between'>
+    <div className='pb-3 flex items-center justify-between'>
       <div className='flex-1'>
         <CalendarModeSelector mode={mode} setMode={setMode} />
       </div>

@@ -1,22 +1,22 @@
 import { memo, useMemo } from 'react';
 import { cn } from '@/shared/lib/cn';
-import CalendarMonthCell from './CalendarMonthCell';
+import CalendarCell from './CalendarCell';
 import { format } from 'date-fns';
 
-interface CalendarMonthViewProps {
+interface CalendarWeekRowProps {
   week: string[];
   isLastWeek: boolean;
   currentMonth: number;
 }
 
-// 주 단위 컴포넌트 (메모이제이션으로 최적화)
-const CalendarMonthView = memo(({ week, isLastWeek, currentMonth }: CalendarMonthViewProps) => {
+// 주 단위 행 컴포넌트 (메모이제이션으로 최적화)
+const CalendarWeekRow = memo(({ week, isLastWeek, currentMonth }: CalendarWeekRowProps) => {
   const todayFormat = useMemo(() => format(new Date(), 'yyyy-MM-dd'), []);
   return (
     <div
       className={cn(
-        'w-full h-full grid grid-cols-7 border border-cal-cell-border',
-        !isLastWeek && 'border-b-0',
+        'w-full h-full grid grid-cols-7 border-b border-cal-cell-border',
+        isLastWeek && 'border-b-0',
       )}
     >
       {week.map((date, index) => {
@@ -25,7 +25,7 @@ const CalendarMonthView = memo(({ week, isLastWeek, currentMonth }: CalendarMont
         const isToday = todayFormat === date;
 
         return (
-          <CalendarMonthCell
+          <CalendarCell
             key={index}
             date={date}
             isLastInRow={index === week.length - 1}
@@ -38,6 +38,6 @@ const CalendarMonthView = memo(({ week, isLastWeek, currentMonth }: CalendarMont
   );
 });
 
-CalendarMonthView.displayName = 'CalendarWeek';
+CalendarWeekRow.displayName = 'CalendarWeekRow';
 
-export default CalendarMonthView;
+export default CalendarWeekRow;

@@ -70,12 +70,16 @@ export default function CalendarDaysHeader({ mode, week }: CalendarDaysHeaderPro
     return (
       <div className='flex'>
         <div className='w-14 shrink-0'></div>
-        <div className='flex-1 bg-cal-days-bg rounded-t-xl grid grid-cols-7'>{renderHeader()}</div>
+        <div className='flex-1 border border-cal-cell-border bg-cal-days-bg rounded-t-xl grid grid-cols-7'>
+          {renderHeader()}
+        </div>
       </div>
     );
   }
 
   return (
-    <div className='bg-cal-days-bg w-full grid rounded-t-xl grid-cols-7'>{renderHeader()}</div>
+    <div className='bg-cal-days-bg border border-cal-cell-border border-b-0 w-full grid rounded-t-xl grid-cols-7'>
+      {renderHeader()}
+    </div>
   );
 }

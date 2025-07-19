@@ -8,7 +8,7 @@ interface CalendarWeekViewProps {
 
 export default function CalendarTimeGrid({ week, currentMonth }: CalendarWeekViewProps) {
   return (
-    <div className='flex-1 overflow-y-auto scrollbar-hide rounded-b-xl'>
+    <div className='overflow-y-auto scrollbar-hide'>
       <div className='flex'>
         {/* TimeSlots - 스크롤과 함께 움직임 */}
         <CalendarTimeSlots />
@@ -21,7 +21,7 @@ export default function CalendarTimeGrid({ week, currentMonth }: CalendarWeekVie
               <CalendarTimeCell
                 key={index}
                 date={date}
-                isLastInRow={index === week.length - 1}
+                isFirstInRow={index === 0}
                 isCurrentMonth={Number(month) === currentMonth + 1}
               />
             );
