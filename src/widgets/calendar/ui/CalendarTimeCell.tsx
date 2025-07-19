@@ -1,12 +1,13 @@
 import { cn } from '@/shared/lib/cn';
 import { TIME_SLOTS } from '../model';
+import { memo } from 'react';
 interface CalendarDayProps {
   date: string;
   isLastInRow: boolean;
   isCurrentMonth: boolean;
 }
 
-function CalendarTimeCell({ date, isLastInRow, isCurrentMonth }: CalendarDayProps) {
+function _CalendarTimeCell({ date, isLastInRow, isCurrentMonth }: CalendarDayProps) {
   return (
     <div className={'flex flex-col'}>
       {TIME_SLOTS.map((timeSlot) => (
@@ -24,5 +25,9 @@ function CalendarTimeCell({ date, isLastInRow, isCurrentMonth }: CalendarDayProp
     </div>
   );
 }
+
+const CalendarTimeCell = memo(_CalendarTimeCell);
+
+CalendarTimeCell.displayName = 'CalendarTimeCell';
 
 export default CalendarTimeCell;

@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import { cn } from '@/shared/lib/cn';
 import CalendarMonthCell from './CalendarMonthCell';
 import { format } from 'date-fns';
@@ -11,7 +11,7 @@ interface CalendarMonthViewProps {
 
 // 주 단위 컴포넌트 (메모이제이션으로 최적화)
 const CalendarMonthView = memo(({ week, isLastWeek, currentMonth }: CalendarMonthViewProps) => {
-  const todayFormat = format(new Date(), 'yyyy-MM-dd');
+  const todayFormat = useMemo(() => format(new Date(), 'yyyy-MM-dd'), []);
   return (
     <div
       className={cn(

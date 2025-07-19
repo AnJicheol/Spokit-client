@@ -2,6 +2,7 @@ import { addMonths, subMonths, addWeeks, subWeeks } from 'date-fns';
 import { type viewMode } from '../model';
 import LeftIcon from '@/assets/left.svg?react';
 import RightIcon from '@/assets/right.svg?react';
+import { useCallback } from 'react';
 
 interface CalendarNavProps {
   baseDate: Date;
@@ -10,7 +11,7 @@ interface CalendarNavProps {
 }
 
 export default function CalendarNav({ baseDate, setBaseDate, mode }: CalendarNavProps) {
-  const handlePrev = () => {
+  const handlePrev = useCallback(() => {
     switch (mode) {
       case 'Month':
         setBaseDate(subMonths(baseDate, 1));
@@ -22,9 +23,9 @@ export default function CalendarNav({ baseDate, setBaseDate, mode }: CalendarNav
       //   setBaseDate(subDays(baseDate, 1));
       //   break;
     }
-  };
+  }, [baseDate, setBaseDate, mode]);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     switch (mode) {
       case 'Month':
         setBaseDate(addMonths(baseDate, 1));
@@ -36,11 +37,11 @@ export default function CalendarNav({ baseDate, setBaseDate, mode }: CalendarNav
       //     setBaseDate(addDays(baseDate, 1));
       //     break;
     }
-  };
+  }, [baseDate, setBaseDate, mode]);
 
-  const handleTodayClick = () => {
+  const handleTodayClick = useCallback(() => {
     setBaseDate(new Date());
-  };
+  }, [setBaseDate]);
   return (
     <div className='flex-1 h-full flex gap-2 justify-end items-end'>
       <div

@@ -2,9 +2,8 @@ import { format } from 'date-fns';
 import type { viewMode } from '../model';
 import { getMonthMatrix, getWeekMatrix } from '@/shared/lib/dateUtils';
 
-// 메모이제이션 캐시
+// 단순한 캐시 Map
 const matrixCache = new Map<string, string[][]>();
-
 /**
  * 캐시 키 생성
  * @param baseDate 기준 날짜
@@ -43,8 +42,7 @@ export function getCalendarMatrix(baseDate: Date, mode: viewMode): string[][] {
       result = getMonthMatrix(baseDate);
   }
 
-  // 캐시 크기 제한 (최대 50개)
-  if (matrixCache.size >= 50) {
+  if (matrixCache.size >= 10) {
     const firstKey = matrixCache.keys().next().value;
     matrixCache.delete(firstKey as string);
   }
