@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 import type { viewMode } from '../model';
-import { getDayMatrix, getMonthMatrix, getWeekMatrix } from '@/shared/lib/dateUtils';
+import { getMonthMatrix, getWeekMatrix } from '@/shared/lib/dateUtils';
 
 // 메모이제이션 캐시
 const matrixCache = new Map<string, string[][]>();
@@ -36,9 +36,9 @@ export function getCalendarMatrix(baseDate: Date, mode: viewMode): string[][] {
     case 'Week':
       result = getWeekMatrix(baseDate);
       break;
-    case 'Day':
-      result = getDayMatrix(baseDate);
-      break;
+    // case 'Day':
+    //   result = getDayMatrix(baseDate);
+    //   break;
     default:
       result = getMonthMatrix(baseDate);
   }

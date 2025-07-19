@@ -1,6 +1,6 @@
 import { cn } from '@/shared/lib/cn';
 import { DAYS_KO, type viewMode } from '../model';
-import { getDay, getDate, parseISO } from 'date-fns';
+import { getDate, parseISO } from 'date-fns';
 import { useMemo } from 'react';
 
 interface CalendarDaysHeaderProps {
@@ -48,10 +48,10 @@ export default function CalendarDaysHeader({ mode, week }: CalendarDaysHeaderPro
     ));
   };
 
-  const renderDayHeader = () => {
-    const date = dates[0];
-    return <HeaderCell isLast={true}>{`${getDate(date)}(${DAYS_KO[getDay(date)]})`}</HeaderCell>;
-  };
+  // const renderDayHeader = () => {
+  //   const date = dates[0];
+  //   return <HeaderCell isLast={true}>{`${getDate(date)}(${DAYS_KO[getDay(date)]})`}</HeaderCell>;
+  // };
 
   const renderHeader = () => {
     switch (mode) {
@@ -59,20 +59,15 @@ export default function CalendarDaysHeader({ mode, week }: CalendarDaysHeaderPro
         return renderMonthHeader();
       case 'Week':
         return renderWeekHeader();
-      case 'Day':
-        return renderDayHeader();
+      // case 'Day':
+      //   return renderDayHeader();
       default:
         return renderMonthHeader();
     }
   };
 
   return (
-    <div
-      className={cn(
-        'bg-cal-days-bg w-full grid rounded-t-xl',
-        mode === 'Day' ? 'grid-cols-1' : 'grid-cols-7',
-      )}
-    >
+    <div className={cn('bg-cal-days-bg w-full grid rounded-t-xl grid-cols-7')}>
       {renderHeader()}
     </div>
   );

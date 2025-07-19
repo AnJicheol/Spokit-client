@@ -1,4 +1,4 @@
-import { addMonths, subMonths, addWeeks, subWeeks, addDays, subDays } from 'date-fns';
+import { addMonths, subMonths, addWeeks, subWeeks } from 'date-fns';
 import { type viewMode } from '../model';
 import LeftIcon from '@/assets/left.svg?react';
 import RightIcon from '@/assets/right.svg?react';
@@ -18,9 +18,9 @@ export default function CalendarNav({ baseDate, setBaseDate, mode }: CalendarNav
       case 'Week':
         setBaseDate(subWeeks(baseDate, 1));
         break;
-      case 'Day':
-        setBaseDate(subDays(baseDate, 1));
-        break;
+      // case 'Day':
+      //   setBaseDate(subDays(baseDate, 1));
+      //   break;
     }
   };
 
@@ -32,9 +32,9 @@ export default function CalendarNav({ baseDate, setBaseDate, mode }: CalendarNav
       case 'Week':
         setBaseDate(addWeeks(baseDate, 1));
         break;
-      case 'Day':
-        setBaseDate(addDays(baseDate, 1));
-        break;
+      //   case 'Day':
+      //     setBaseDate(addDays(baseDate, 1));
+      //     break;
     }
   };
 
@@ -42,7 +42,7 @@ export default function CalendarNav({ baseDate, setBaseDate, mode }: CalendarNav
     setBaseDate(new Date());
   };
   return (
-    <div className='flex gap-2 items-center pb-1'>
+    <div className='flex-1 h-full flex gap-2 items-center justify-end items-end'>
       <div
         onClick={handlePrev}
         className='embossed w-8 h-8 bg-cal-btn-bg rounded-full flex items-center justify-center cursor-pointer'

@@ -24,8 +24,8 @@ export default function Calendar() {
         ));
       case 'Week':
         return <CalendarTimeGrid currentMonth={baseDate.getMonth()} week={weeks[0]} />;
-      case 'Day':
-        return <CalendarTimeGrid currentMonth={baseDate.getMonth()} week={[weeks[0][0]]} />;
+      // case 'Day':
+      //   return <CalendarTimeGrid currentMonth={baseDate.getMonth()} week={[weeks[0][0]]} />;
       default:
         return null;
     }

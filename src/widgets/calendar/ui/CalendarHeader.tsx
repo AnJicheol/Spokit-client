@@ -19,14 +19,12 @@ export default function CalendarHeader({
 }: CalendarHeaderProps) {
   const dateFormat = format(baseDate, 'yyyy-MM', { locale: ko });
   return (
-    <div className='h-[82px] my-5 flex items-center justify-between'>
-      <div className='h-full flex-1 flex gap-4 items-end'>
-        <h1 className='text-[#1A256E] text-title1 '>{dateFormat}</h1>
-        <CalendarNav baseDate={baseDate} setBaseDate={setBaseDate} mode={mode} />
+    <div className='pb-3 pt-[33px] flex items-center justify-between'>
+      <div className='flex-1'>
+        <CalendarModeSelector mode={mode} setMode={setMode} />
       </div>
-      <CalendarModeSelector mode={mode} setMode={setMode} />
-      {/* 가운데에 Selector를 두기 위한 빈공간 */}
-      <div className='flex-1'></div>
+      <h1 className='text-[#1A256E] text-title1'>{dateFormat}</h1>
+      <CalendarNav baseDate={baseDate} setBaseDate={setBaseDate} mode={mode} />
     </div>
   );
 }
