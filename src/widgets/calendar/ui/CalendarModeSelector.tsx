@@ -1,12 +1,12 @@
 import { MONTH_DAY_WEEK, type viewMode } from '../model';
 import { motion } from 'motion/react';
 
-interface CalendarViewSelectorProps {
+interface CalendarModeSelectorProps {
   mode: viewMode;
   setMode: (mode: viewMode) => void;
 }
 
-export default function CalendarViewSelector({ mode, setMode }: CalendarViewSelectorProps) {
+export default function CalendarModeSelector({ mode, setMode }: CalendarModeSelectorProps) {
   // 버튼 넓이와 위치를 위한 상수 값들
   const BUTTON_WIDTH = 84;
   const viewIndexMap = {

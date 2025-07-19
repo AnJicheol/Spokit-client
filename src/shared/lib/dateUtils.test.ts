@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 
-import { getMonthMatrix } from './calendarUtils';
+import { getMonthMatrix } from './dateUtils';
 
 describe('getMonthMatrix 함수 테스트', () => {
   // 특정 월은 해당 월 - 1입니다. (ex: 7월 = 6)

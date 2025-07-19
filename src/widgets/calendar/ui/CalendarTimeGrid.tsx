@@ -1,4 +1,4 @@
-import { cn } from '@/shared/lib/utils';
+import { cn } from '@/shared/lib/cn';
 import CalendarTimeCell from './CalendarTimeCell';
 
 interface CalendarWeekViewProps {

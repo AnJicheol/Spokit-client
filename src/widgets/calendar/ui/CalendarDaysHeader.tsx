@@ -1,4 +1,4 @@
-import { cn } from '@/shared/lib/utils';
+import { cn } from '@/shared/lib/cn';
 import { DAYS_KO, type viewMode } from '../model';
 import { getDay, getDate, parseISO } from 'date-fns';
 import { useMemo } from 'react';

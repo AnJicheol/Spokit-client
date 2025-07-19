@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 import { ko } from 'date-fns/locale';
-import CalendarViewSelector from './CalendarViewSelector';
+import CalendarModeSelector from './CalendarModeSelector';
 import CalendarNav from './CalendarNav';
 import { type viewMode } from '../model';
 
@@ -24,7 +24,7 @@ export default function CalendarHeader({
         <h1 className='text-[#1A256E] text-title1 '>{dateFormat}</h1>
         <CalendarNav baseDate={baseDate} setBaseDate={setBaseDate} mode={mode} />
       </div>
-      <CalendarViewSelector mode={mode} setMode={setMode} />
+      <CalendarModeSelector mode={mode} setMode={setMode} />
       {/* 가운데에 Selector를 두기 위한 빈공간 */}
       <div className='flex-1'></div>
     </div>

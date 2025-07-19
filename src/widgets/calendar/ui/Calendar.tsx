@@ -1,10 +1,10 @@
 import { type viewMode } from '../model';
 import { useState, useMemo } from 'react';
 import CalendarHeader from './CalendarHeader';
-import { getCalendarMatrix } from '../lib/calendarUtils';
 import CalendarDaysHeader from './CalendarDaysHeader';
 import CalendarTimeGrid from './CalendarTimeGrid';
 import CalendarMonthView from './CalendarMonthView';
+import { getCalendarMatrix } from '../lib/calendarMatrix';
 
 export default function Calendar() {
   // 상태 관리
