@@ -1,4 +1,5 @@
 import { cn } from '@/shared/lib/cn';
+import { TIME_SLOTS } from '../model';
 interface CalendarDayProps {
   date: string;
   isLastInRow: boolean;
@@ -6,20 +7,15 @@ interface CalendarDayProps {
 }
 
 function CalendarTimeCell({ date, isLastInRow, isCurrentMonth }: CalendarDayProps) {
-  const timeSlots = Array.from({ length: 48 }, (_, i) => {
-    const hour = Math.floor(i / 2);
-    const minute = i % 2 === 0 ? '00' : '30';
-    return `${hour.toString().padStart(2, '0')}:${minute}`;
-  });
-
   return (
-    <div className={cn(!isCurrentMonth && 'bg-cal-cell-muted-bg')}>
-      {timeSlots.map((timeSlot) => (
+    <div className={'flex flex-col'}>
+      {TIME_SLOTS.map((timeSlot) => (
         <div
           key={`${date}-${timeSlot}`}
           className={cn(
             'bg-cal-cell-bg border-r border-b border-cal-cell-border h-[40px]',
             isLastInRow && 'border-r-0',
+            !isCurrentMonth && 'bg-cal-cell-muted-bg',
           )}
           data-time={timeSlot}
           data-date={date}

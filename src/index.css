@@ -133,10 +133,9 @@
   body {
     @apply bg-background text-foreground;
   }
-
 }
 
-@layer components{
+@layer components {
   .embossed {
     @apply relative overflow-hidden;
     box-shadow:

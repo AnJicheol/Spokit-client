@@ -1,4 +1,4 @@
-import { type viewMode } from '../model';
+import { TIME_SLOTS, type viewMode } from '../model';
 import { useState, useMemo } from 'react';
 import CalendarHeader from './CalendarHeader';
 import CalendarDaysHeader from './CalendarDaysHeader';
@@ -33,8 +33,28 @@ export default function Calendar() {
   return (
     <div className='w-full h-full mx-auto bg-calendar-bg rounded-xl px-4 shadow flex flex-col'>
       <CalendarHeader baseDate={baseDate} setBaseDate={setBaseDate} mode={mode} setMode={setMode} />
-      <CalendarDaysHeader mode={mode} week={weeks} />
-      <div className='flex-1 min-h-0 flex flex-col'>{renderCalendar(mode)}</div>
+      {mode === 'Month' ? (
+        <div className='flex-1 min-h-0 flex flex-col'>
+          <CalendarDaysHeader mode={mode} week={weeks} />
+          {renderCalendar(mode)}
+        </div>
+      ) : (
+        <div className='flex'>
+          <div className='flex flex-col w-14 mt-10'>
+            {TIME_SLOTS.filter((_, i) => i % 2 === 0).map((slot) => {
+              return (
+                <div key={slot} className='h-20'>
+                  {slot.split(':')[0]}시
+                </div>
+              );
+            })}
+          </div>
+          <div className='flex-1 min-h-0 flex flex-col'>
+            <CalendarDaysHeader mode={mode} week={weeks} />
+            {renderCalendar(mode)}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

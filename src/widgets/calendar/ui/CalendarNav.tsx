@@ -42,7 +42,7 @@ export default function CalendarNav({ baseDate, setBaseDate, mode }: CalendarNav
     setBaseDate(new Date());
   };
   return (
-    <div className='flex-1 h-full flex gap-2 items-center justify-end items-end'>
+    <div className='flex-1 h-full flex gap-2 justify-end items-end'>
       <div
         onClick={handlePrev}
         className='embossed w-8 h-8 bg-cal-btn-bg rounded-full flex items-center justify-center cursor-pointer'

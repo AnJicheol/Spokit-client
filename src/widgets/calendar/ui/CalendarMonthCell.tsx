@@ -1,6 +1,5 @@
 import { memo } from 'react';
 import { cn } from '@/shared/lib/cn';
-import { ScheduleForm } from '../../../features/schedule/ui/ScheduleForm';
 
 interface CalendarDayProps {
   date: string;
@@ -23,7 +22,6 @@ const CalendarMonthCell = memo(
           !isCurrentMonth && 'bg-cal-cell-muted-bg',
         )}
       >
-        <ScheduleForm date={date} />
         <div
           className={cn(
             'absolute top-2 left-3 text-label font-semibold',
@@ -37,6 +35,6 @@ const CalendarMonthCell = memo(
   },
 );
 
-CalendarMonthCell.displayName = 'CalendarDay';
+CalendarMonthCell.displayName = 'CalendarMonthCell';
 
 export default CalendarMonthCell;

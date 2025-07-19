@@ -1,4 +1,3 @@
-import { cn } from '@/shared/lib/cn';
 import CalendarTimeCell from './CalendarTimeCell';
 
 interface CalendarWeekViewProps {
@@ -8,16 +7,9 @@ interface CalendarWeekViewProps {
 
 export default function CalendarTimeGrid({ week, currentMonth }: CalendarWeekViewProps) {
   return (
-    <div
-      className={cn(
-        'grid overflow-y-scroll scrollbar-hide',
-        week.length === 1 ? 'grid-cols-1' : 'grid-cols-7',
-      )}
-    >
+    <div className={'grid overflow-y-scroll scrollbar-hide grid-cols-7'}>
       {week.map((date, index) => {
         const [, month] = date.split('-').map(Number);
-        // 현재 날짜인지 확인
-
         return (
           <CalendarTimeCell
             key={index}
