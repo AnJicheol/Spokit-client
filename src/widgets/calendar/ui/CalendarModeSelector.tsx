@@ -27,6 +27,7 @@ export default function CalendarModeSelector({ mode, setMode }: CalendarModeSele
     <div className='bg-transparent max-w-[176px] flex justify-between items-end p-1 mt-3 debossed rounded-[30px] relative'>
       {/* 애니메이션되는 배경 */}
       <motion.div
+        data-testId='selector-animate-bg'
         className='absolute top-1 bottom-1 bg-cal-btn-bg rounded-full z-0 embossed'
         initial={false}
         animate={{
