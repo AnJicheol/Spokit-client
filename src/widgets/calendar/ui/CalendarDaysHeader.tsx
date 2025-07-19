@@ -66,7 +66,16 @@ export default function CalendarDaysHeader({ mode, week }: CalendarDaysHeaderPro
     }
   };
 
+  if (mode === 'Week') {
+    return (
+      <div className='flex'>
+        <div className='w-14 shrink-0'></div>
+        <div className='flex-1 bg-cal-days-bg rounded-t-xl grid grid-cols-7'>{renderHeader()}</div>
+      </div>
+    );
+  }
+
   return (
-    <div className={'bg-cal-days-bg w-full grid rounded-t-xl grid-cols-7'}>{renderHeader()}</div>
+    <div className='bg-cal-days-bg w-full grid rounded-t-xl grid-cols-7'>{renderHeader()}</div>
   );
 }
